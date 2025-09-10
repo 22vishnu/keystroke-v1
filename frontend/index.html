@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Keystroke Study</title>
+    <!-- This line connects the CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Academic Study: Typing Under Conditions</h1>
+        <p class="consent"><strong>Consent:</strong> By participating, you consent to the anonymous collection of your typing patterns for academic machine learning research. Your data will not be personally identifiable. Please complete both tasks.</p>
+
+        <!-- INTRODUCTION SCREEN -->
+        <section id="intro-screen">
+            <p>This study has two parts. It will take about 3-5 minutes.</p>
+            <button id="start-button">I Understand. Begin Study</button>
+        </section>
+
+               <!-- RELAXED TASK SCREEN -->
+        <section id="relaxed-task" class="hidden">
+            <h2>Task 1: Relaxed Transcription</h2>
+            <h3>Read the instructions first</h3>
+            <p>Please type the text below in a <strong>calm and composed</strong> manner. You can type it at your <strong>own pace</strong>. There is no time limit.</p>
+            <div class="prompt-box">
+                <!-- Changed id to relaxed-prompt -->
+                <p id="relaxed-prompt"></p> <!-- JS will put the text here -->
+            </div>
+            <textarea id="relaxed-text" class="typing-box" placeholder="Type the text here..."></textarea>
+            <br>
+            <button id="relaxed-done">Continue to Next Task</button>
+        </section>
+
+        <!-- STRESSED TASK SCREEN -->
+        <section id="stressed-task" class="hidden">
+            <h2>Task 2: Timed Challenge</h2>
+            <h3>Read the instructions first</h3>
+            <p>Type the text below <strong>as quickly and accurately as possible!</strong> Finish it within the time limit.</p>
+            <p>Time Remaining: <span id="timer">02:00</span></p>
+            <div class="prompt-box">
+                <!-- Changed id to stressed-prompt -->
+                <p id="stressed-prompt"></p> <!-- JS will put the text here -->
+            </div>
+            <textarea id="stressed-text" class="typing-box" placeholder="Type the text here..."></textarea>
+            <br>
+            <button id="stressed-done" class="hidden">Finish Study</button>
+        </section>
+
+        <!-- DOWNLOAD SCREEN -->
+        <section id="download-screen" class="hidden">
+            <h2>Thank You!</h2>
+            <p>Your participation is complete. Please download your data file and send it to the researcher.</p>
+            <button id="download-button">Download Data (CSV)</button>
+        </section>
+    </div>
+
+    <!-- This line connects the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
