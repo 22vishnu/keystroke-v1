@@ -175,6 +175,10 @@ function finishExperiment() {
     stressedData.features = calculateFeatures(stressedData.events); // Calculate stressed features
     console.log("Stressed Task Features:", stressedData.features);
 
+    // Save both relaxed and stressed features to backend
+    saveFeaturesToDB('relaxed', relaxedData.features);
+    saveFeaturesToDB('stressed', stressedData.features);
+
     // Change the UI
     stressedTask.classList.add('hidden');
     downloadScreen.classList.remove('hidden');
@@ -284,4 +288,23 @@ function downloadCSV() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+}
+
+// =========================
+// FUNCTION: Save Features to Backend Database
+// =========================
+function saveFeaturesToDB(condition, features) {
+    const data = { condition, ...features };
+    fetch('http://localhost:5000/save_features', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Saved to DB:', result);
+    })
+    .catch(error => {
+        console.error('Error saving to DB:', error);
+    });
 }
