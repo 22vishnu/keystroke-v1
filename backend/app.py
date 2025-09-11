@@ -79,8 +79,14 @@ def insert_features(data):
 @app.route('/save_features', methods=['POST'])
 def save_features():
     data = request.json
-    insert_features(data)
-    return jsonify({'status': 'success'})
+    print('Received data:', data)  # Debug: print received data
+    try:
+        insert_features(data)
+        print('Data inserted successfully.')
+        return jsonify({'status': 'success'})
+    except Exception as e:
+        print('Error inserting data:', e)
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
